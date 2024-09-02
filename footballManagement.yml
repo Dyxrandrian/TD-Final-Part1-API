@@ -1,0 +1,5 @@
+openapi: 3.0.0
+info:
+  title: Football Competition Management API
+  description: API to manage football competitions, teams, and players.
+  version: 1.0.0
