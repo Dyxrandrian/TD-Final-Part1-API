@@ -3,3 +3,39 @@ info:
   title: Football Competition Management API
   description: API to manage football competitions, teams, and players.
   version: 1.0.0
+
+paths:
+  /competitions:
+    get:
+      summary: Get list of all competitions
+      parameters:
+        - in: query
+          name: page
+          required: true
+          schema:
+            type: integer
+          description: The page number on pagination.
+        - in: query
+          name: pageSize
+          required: true
+          schema:
+            type: integer
+          description: The number of items in page.
+      responses:
+        '200':
+          description: List of all competitions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompetitionList'
+     post:
+      summary: Create new competition
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Competition'
+      responses:
+        '201':
+          description: Competition created successfully
