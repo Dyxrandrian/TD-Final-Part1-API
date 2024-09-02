@@ -7,42 +7,31 @@ info:
 paths:
   /competitions:
     get:
-      summary: Get list of all competitions
+      summary: Get a list of competitions
       parameters:
         - in: query
           name: page
           required: true
           schema:
             type: integer
-          description: The page number on pagination.
+          description: The page number for pagination.
         - in: query
           name: pageSize
           required: true
           schema:
             type: integer
-          description: The number of items in page.
+          description: The number of items per page.
       responses:
         '200':
-          description: List of all competitions
+          description: A list of competitions
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CompetitionList'
-     post:
-      summary: Create new competition
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Competition'
-      responses:
-        '201':
-          description: Competition created successfully
 
   /teams:
     get:
-      summary: Get list of teams
+      summary: Get a list of teams
       parameters:
         - in: query
           name: teamName
@@ -68,28 +57,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TeamList'
-    post:
-      summary: Create a new team
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Team'
-      responses:
-        '201':
-          description: The team was successfully created
 
   /teams/{teamId}/players:
+    parameters:
+      - in: path
+        name: teamId
+        required: true
+        schema:
+          type: string
+        description: The ID of the team
     get:
       summary: Get a list of players for a specific team
       parameters:
-        - in: path
-          name: teamId
-          required: true
-          schema:
-            type: string
-          description: The ID of the team
         - in: query
           name: playerName
           schema:
@@ -205,4 +184,3 @@ components:
           type: integer
         pageSize:
           type: integer
-
