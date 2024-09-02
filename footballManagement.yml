@@ -126,3 +126,83 @@ paths:
         '201':
           description: The player was successfully added to the team
 
+components:
+  schemas:
+    Competition:
+      type: object
+      properties:
+        name:
+          type: string
+          example: LIGA
+        location:
+          type: string
+          example: EUROPE
+
+    CompetitionList:
+      type: object
+      properties:
+        competitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Competition'
+        total:
+          type: integer
+        page:
+          type: integer
+        pageSize:
+          type: integer
+
+    Team:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Real Madrid
+        slogan:
+          type: string
+          example: "Hala Madrid"
+
+    TeamList:
+      type: object
+      properties:
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/Team'
+        total:
+          type: integer
+        page:
+          type: integer
+        pageSize:
+          type: integer
+
+    Player:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Lionel Messi
+        number:
+          type: integer
+          example: 10
+        strongFoot:
+          type: string
+          enum:
+            - Left
+            - Right
+          example: Left
+
+    PlayerList:
+      type: object
+      properties:
+        players:
+          type: array
+          items:
+            $ref: '#/components/schemas/Player'
+        total:
+          type: integer
+        page:
+          type: integer
+        pageSize:
+          type: integer
+
